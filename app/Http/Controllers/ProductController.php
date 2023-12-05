@@ -33,7 +33,7 @@ class ProductController extends Controller
         $product = $request->all();
         $created = Product::create($product);
         if($created) {
-            return response()->json('created');
+            return response()->json('successfully created');
         } else {
             return response()->json('failed to create');
         }
@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return $product;
     }
 
     /**
@@ -60,7 +60,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return $product;
     }
 
     /**
@@ -68,6 +69,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response(null, 204);
     }
 }

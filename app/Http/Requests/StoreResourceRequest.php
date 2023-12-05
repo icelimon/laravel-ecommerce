@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Validator;
 
-class StoreProductRequest extends FormRequest
+class StoreResourceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,10 +22,7 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:products|max:255',
-            'description' => 'string|max:255',
-            'price' => 'numeric',
-            'quantity' => 'numeric'
+            //
         ];
     }
 }
