@@ -1,0 +1,21 @@
+@URL = http://localhost:81/api/product
+###
+
+### Get all products
+GET {{URL}}
+Content-Type: application/json
+
+###
+### Create new product
+POST {{URL}}
+Content-Type: application/json
+
+{
+    "name": "Chair",
+    "description": "A short description of the product",
+    "price": 5.1,
+    "quantity": 2
+}
+
+
+### Update a product
