@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -21,8 +23,10 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = request()->segment(count(request()->segments()));
+        
         return [
-            'name' => 'required|unique:products|max:255',
+            'name' => "required|unique:products,name,$id,id|max:255",
             'description' => 'string|max:255',
             'price' => 'numeric',
             'quantity' => 'numeric'

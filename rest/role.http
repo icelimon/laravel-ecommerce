@@ -1,0 +1,22 @@
+@URL = http://localhost:81/api
+
+### Login
+# @name login
+POST {{URL}}/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "123456"
+}
+
+### 
+@authToken = {{login.response.body.authorization.token}}
+
+### Get all role
+
+GET {{URL}}/role
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###

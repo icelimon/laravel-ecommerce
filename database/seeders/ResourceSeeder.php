@@ -17,6 +17,21 @@ class ResourceSeeder extends Seeder
         DB::table('resources')->insert(['name' => 'user.post']);
         DB::table('resources')->insert(['name' => 'user.update']);
         DB::table('resources')->insert(['name' => 'user.delete']);
+        
+        DB::table('resources')->insert(['name' => 'role.get']);
+        DB::table('resources')->insert(['name' => 'role.post']);
+        DB::table('resources')->insert(['name' => 'role.update']);
+        DB::table('resources')->insert(['name' => 'role.delete']);
+        
+        DB::table('resources')->insert(['name' => 'resource.get']);
+        DB::table('resources')->insert(['name' => 'resource.post']);
+        DB::table('resources')->insert(['name' => 'resource.update']);
+        DB::table('resources')->insert(['name' => 'resource.delete']);
+        
+        DB::table('resources')->insert(['name' => 'policy.get']);
+        DB::table('resources')->insert(['name' => 'policy.post']);
+        DB::table('resources')->insert(['name' => 'policy.update']);
+        DB::table('resources')->insert(['name' => 'policy.delete']);
 
         DB::table('resources')->insert(['name' => 'product.get']);
         DB::table('resources')->insert(['name' => 'product.post']);

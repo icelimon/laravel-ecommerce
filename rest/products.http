@@ -6,7 +6,7 @@ GET {{URL}}
 Content-Type: application/json
 
 ### Get single product
-GET {{URL}}/2
+GET {{URL}}/1
 Content-Type: application/json
 
 
@@ -17,7 +17,7 @@ Content-Type: application/json
 {
     "name": "Table",
     "description": "A short description of the product",
-    "price": 10.2,
+    "price": 10.5,
     "quantity": 1
 }
 
@@ -27,7 +27,7 @@ PATCH {{URL}}/2
 Content-Type: application/json
 
 {
-    "name": "Table 2",
+    "name": "Table",
     "description": "A short description of the product",
     "price": 5.6,
     "quantity": 3

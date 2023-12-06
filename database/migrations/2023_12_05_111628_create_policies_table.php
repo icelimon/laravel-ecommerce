@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('policies', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('role_id')->references('id')->on('roles')->cascadeOnDelete();
+            $table->foreignId('resource_id')->references('id')->on('resources')->cascadeOnDelete();
             $table->timestamps();
         });
     }

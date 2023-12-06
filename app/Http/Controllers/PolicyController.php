@@ -4,16 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePolicyRequest;
 use App\Http\Requests\UpdatePolicyRequest;
+use App\Http\Traits\ResponseTrait;
 use App\Models\Policy;
+use App\Services\PolicyService;
 
 class PolicyController extends Controller
 {
+    use ResponseTrait;
+
+    protected $policyService;
+
+    public function __construct(PolicyService $policyService)
+    {
+        $this->policyService = $policyService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $policies = $this->policyService->all();
+        return $this->commonResponse($policies);
     }
 
     /**
@@ -29,7 +40,13 @@ class PolicyController extends Controller
      */
     public function store(StorePolicyRequest $request)
     {
-        //
+        $policy = $request->all();
+        $created = $this->policyService->add($policy);
+        if($created) {
+            return $this->commonResponse(null, 'Successfully created', true);
+        } else {
+            return $this->commonResponse(null, 'Failed to create', false);
+        }
     }
 
     /**
@@ -37,7 +54,7 @@ class PolicyController extends Controller
      */
     public function show(Policy $policy)
     {
-        //
+        return $this->commonResponse($policy);
     }
 
     /**
@@ -53,7 +70,12 @@ class PolicyController extends Controller
      */
     public function update(UpdatePolicyRequest $request, Policy $policy)
     {
-        //
+        $status = $this->policyService->edit($policy, $request->all());
+        if ($status) {
+            return $this->commonResponse($policy);
+        } else {
+            return $this->commonResponse(null, 'Failed to update', false);
+        }
     }
 
     /**
@@ -61,6 +83,11 @@ class PolicyController extends Controller
      */
     public function destroy(Policy $policy)
     {
-        //
+        $status = $this->policyService->delete($policy);
+        if($status) {
+            return $this->commonResponse(null, 'Deleted successfully', true);
+        } else {
+            return $this->commonResponse(null, 'Failed to Delete', false);
+        }
     }
 }

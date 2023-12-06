@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Traits\ResponseTrait;
 use App\Models\Product;
+use App\Services\ProductService;
 
 class ProductController extends Controller
 {
+    use ResponseTrait;
+    protected $productService;
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::paginate();
-        return response()->json($products);
+        $products = $this->productService->all();
+        return $this->commonResponse($products);
     }
 
     /**
@@ -31,11 +39,11 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = $request->all();
-        $created = Product::create($product);
+        $created = $this->productService->add($product);
         if($created) {
-            return response()->json('successfully created');
+            return $this->commonResponse(null, 'Successfully created');
         } else {
-            return response()->json('failed to create');
+            return $this->commonResponse(null, 'Failed to create', false);
         }
     }
 
@@ -44,7 +52,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product;
+        return $this->commonResponse($product);
     }
 
     /**
@@ -60,8 +68,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->all());
-        return $product;
+        $status = $this->productService->edit($product, $request->all());
+        if ($status) {
+            return $this->commonResponse($product, 'Successfully updated');
+        } else {
+            return $this->commonResponse($product, 'Failed to update', false);
+        }
     }
 
     /**
@@ -69,7 +81,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-        return response(null, 204);
+        $status = $this->productService->delete($product);
+        if($status) {
+            return $this->commonResponse(null, 'Deleted successfully');
+        } else {
+            return $this->commonResponse(null, 'Failed to Delete', false);
+        }
     }
 }
