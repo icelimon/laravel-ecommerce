@@ -1,0 +1,49 @@
+@URL = http://localhost:81/api
+
+### Login
+# @name login
+POST {{URL}}/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "123456"
+}
+
+### 
+@authToken = {{login.response.body.authorization.token}}
+
+### Get all
+
+GET {{URL}}/cart
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Add to cart
+POST {{URL}}/cart
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "product_id": 1,
+    "quantity": 1,
+    "unit_price": 5
+}
+
+### Update to cart
+
+PUT {{URL}}/cart
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "product_id": 1,
+    "quantity": 1,
+    "unit_price": 2
+}
+
+### Delete from cart
+DELETE {{URL}}/cart
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+

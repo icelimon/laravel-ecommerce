@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ResourceController;
@@ -34,4 +35,9 @@ Route::middleware(['auth:api', 'token'])->group(function() {
     Route::resource('/role', RoleController::class);
     Route::resource('/policy', PolicyController::class);
     Route::resource('/resource', ResourceController::class);
+
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart', [CartController::class, 'store']);
+    Route::put('/cart', [CartController::class, 'update']);
+    Route::delete('/cart', [CartController::class, 'destroy']);
 });
