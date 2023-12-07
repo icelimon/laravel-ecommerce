@@ -27,7 +27,6 @@
 - [Prerequisites](#prerequisites)
 - [Installing](#installing)
 - [Usage](#usage)
-- [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
 - [Authors](#authors)
 - [License](#license)
@@ -105,12 +104,6 @@ End with an example of getting some data out of the system or using it for a lit
   All API endpoint has been placed inside rest folder 
 <p>
 
-
-
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
 
 ## Acknowledgments <a name = "acknowledgments"></a>
 
