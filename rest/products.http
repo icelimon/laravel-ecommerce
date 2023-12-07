@@ -1,23 +1,40 @@
-@URL = http://localhost:81/api/product
+@URL = http://localhost:81/api
 ###
 
-### Get all products
-GET {{URL}}
+### Login
+# @name login
+POST {{URL}}/login
 Content-Type: application/json
 
+{
+    "email": "admin@example.com",
+    "password": "123456"
+}
+
+### 
+@authToken = {{login.response.body.authorization.token}}
+
+
+### Get all products
+GET {{URL}}/product
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
 ### Get single product
-GET {{URL}}/1
+GET {{URL}}/product/1
 Content-Type: application/json
 
 
 ### Create new product
-POST {{URL}}
+POST {{URL}}/product
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 {
-    "name": "Table",
+    "name": "Chair",
     "description": "A short description of the product",
-    "price": 10.5,
+    "price": 5.5,
     "quantity": 1
 }
 

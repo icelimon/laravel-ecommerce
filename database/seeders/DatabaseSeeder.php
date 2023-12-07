@@ -23,6 +23,13 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1,
             'is_super_admin' => 1
         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Customer',
+            'email' => 'customer@example.com',
+            'password' => '123456',
+            'role_id' => 2,
+            'is_super_admin' => 0
+        ]);
         
     }
 }

@@ -1,0 +1,71 @@
+@URL = http://localhost:81/api
+
+### Login
+# @name login
+POST {{URL}}/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "123456"
+}
+
+### 
+@authToken = {{login.response.body.authorization.token}}
+
+### Get all
+
+GET {{URL}}/order
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Get single  
+
+GET {{URL}}/order/3
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### Add to order
+POST {{URL}}/order
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "status": "P",
+    "details" : [{
+        "product_id": 1,
+        "quantity": 1,
+        "unit_price": 1.5
+    }]
+}
+
+### Update to order
+
+PUT {{URL}}/order/3
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "status": "P",
+    "details" : [
+        {
+            "product_id": 1,
+            "quantity": 2,
+            "unit_price": 1.5
+        },
+        {
+            "product_id": 2,
+            "quantity": 4,
+            "unit_price": 1
+        }
+    ]
+}
+
+### Delete from order
+DELETE {{URL}}/order
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+# curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-4ALOP0ILYEL41MASCHO1ASJ8BYC NEW_RELIC_ACCOUNT_ID=4271850 /usr/local/bin/newrelic install
+
+# 587d3dcb64e363405682ee0c42aebe02FFFFNRAL

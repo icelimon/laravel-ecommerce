@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ResourceController;
@@ -35,6 +36,7 @@ Route::middleware(['auth:api', 'token'])->group(function() {
     Route::resource('/role', RoleController::class);
     Route::resource('/policy', PolicyController::class);
     Route::resource('/resource', ResourceController::class);
+    Route::resource('/order', OrderController::class);
 
     Route::get('/cart', [CartController::class, 'index']);
     Route::post('/cart', [CartController::class, 'store']);

@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-## About Laravel
+<h3 align="center">E-Commerce App</h3>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<div align="center">
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)]
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<p align="center"> Simple ecommerce application which allows you to create products, user roles and permissions defines, add to cart and finlly place an order.
+    <br> 
+</p>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📝 Table of Contents
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- [About](#about)
+- [Feature](#featue)
+- [Getting Started](#getting_started)
+- [Prerequisites](#prerequisites)
+- [Installing](#installing)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Acknowledgments](#acknowledgments)
+- [Authors](#authors)
+- [License](#license)
 
-## Laravel Sponsors
+## 🧐 About <a name = "about"></a>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+This is a Laravel-based eCommerce application with features such as product listing, shopping cart functionality, and order processing. The application uses Redis for efficient and fast cart management and PostgreSQL as the database for storing product and order information.
 
-### Premium Partners
+## Feature <a name = "feature"></a>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. User authentication and authorization
+2. Product listing and details
+3. Shopping cart with Redis for quick and scalable cart management
+4. Order processing and history
+5. PostgreSQL database for data storage
 
-## Contributing
+## 🏁 Getting Started <a name = "getting_started"></a>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
-## Code of Conduct
+### Prerequisites <a name = "prerequisites"></a>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Make sure you have the following installed on your system:
 
-## Security Vulnerabilities
+  - Git is installed.
+  - Docker is installed and running
+  - Docker compose (Ubuntu) or Desktop Docker (Windows) is installed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+### Installing <a name = "installing"></a>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+A step by step series of examples that tell you how to get a development env running.
+
+Clone the repository
+```
+   git clone git@github.com:icelimon/laravel-ecommerce.git
+```
+
+Change directory
+```
+   cd laravel-ecommerce
+```
+
+Copy environment
+```
+   cp .env.example .env
+```
+
+Generate key
+```
+  ./vendor/bin/sail artisan key:generate
+```
+
+Run database migrations and seed data:
+```
+   ./vendor/bin/sail artisan migrate --seed
+```
+
+Start the Laravel Sail development environment:
+```
+   ./vendor/bin/sail up -d
+```
+
+
+End with an example of getting some data out of the system or using it for a little demo.
+
+
+
+## 🎈 Usage <a name="usage"></a>
+  Add notes about how to use the system.
+  
+<p>
+  Open VS Code then search and isntall the extension "Rest Client"
+  <br>
+  All API endpoint has been placed inside rest folder 
+<p>
+
+
+
+
+## 🚀 Deployment <a name = "deployment"></a>
+
+Add additional notes about how to deploy this on a live system.
+
+## Acknowledgments <a name = "acknowledgments"></a>
+
+- [Laravel](https://laravel.com/) - Framework
+- [Redis](https://redis.io/) - Cache Database
+- [PostgreSQL](https://www.postgresql.org/) - Database
+
+
+## ✍️ Authors <a name = "authors"></a>
+
+- [@icelimon](https://github.com/icelimon) - Idea & Initial work
+- Email: icelimon.pro@gmail.com
+- GitHub: https://github.com/icelimon
+
+## 🎉 License <a name = "license"></a>
+
+This Laravel eCommerce App is open-sourced software licensed under the MIT license.
