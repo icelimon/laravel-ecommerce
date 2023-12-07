@@ -10,7 +10,7 @@ trait ResponseTrait {
     public function commonResponse($data = null, $message = null, $status = true) {
 
         return response()->json([
-            'data' => $data,
+            'data' => empty($data) ? [] : $data,
             'message' => $message,
             'status' => $status == true ? 'success' : 'failure'
         ]);

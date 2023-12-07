@@ -20,7 +20,9 @@ class CartService
     {
         // Logic to add item to the cart
         $cartData = Cache::get('user_cart:' . auth()->id()) ?? [];
-
+        if(isset($cartData['total_price'])) {
+            unset($cartData['total_price']);
+        }
         $productId = $data['product_id'];
         $quantity = $data['quantity'];
 
@@ -39,6 +41,11 @@ class CartService
             // If the product is not in the cart, add it
             $cartData[] = $data;
         }
+        $totalPrice = 0;
+        foreach ($cartData as $cartItem) {
+            $totalPrice += $cartItem['quantity'] * $cartItem['unit_price'];
+        }
+        $cartData['total_price'] = $totalPrice;
 
         // Store cart data in Redis
         $expirationInSeconds = 60 * 60; // Example: Set expiration to 1 hour
@@ -52,7 +59,9 @@ class CartService
     {
         // Logic to edit item in the cart
         $cartData = Cache::get('user_cart:' . auth()->id()) ?? [];
-
+        if(isset($cartData['total_price'])) {
+            unset($cartData['total_price']);
+        }
         $productId = $data['product_id'];
         $newQuantity = $data['quantity'];
 
@@ -64,9 +73,15 @@ class CartService
         if ($cartItemIndex !== false) {
             // If the item is found, update the quantity
             $cartData[$cartItemIndex]['quantity'] = $newQuantity;
-
+            $cartData[$cartItemIndex]['unit_price'] = $data['unit_price'];
+            $totalPrice = 0;
+            foreach($cartData as $cartItem) {
+                $totalPrice += $cartItem['quantity'] * $cartItem['unit_price'];
+            }
+            $cartData['total_price'] = $totalPrice;
             // Store cart data in Redis
-            Cache::put('user_cart:' . auth()->id(), $cartData, 60 * 60);
+            $expirationInSeconds = 60 * 60; // Example: Set expiration to 1 hour
+            Cache::put('user_cart:' . auth()->id(), $cartData, $expirationInSeconds);
 
             return true;
         }

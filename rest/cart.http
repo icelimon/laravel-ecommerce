@@ -26,8 +26,8 @@ Authorization: Bearer {{authToken}}
 
 {
     "product_id": 1,
-    "quantity": 1,
-    "unit_price": 5
+    "quantity": 2,
+    "unit_price": 2
 }
 
 ### Update to cart
@@ -39,7 +39,7 @@ Authorization: Bearer {{authToken}}
 {
     "product_id": 1,
     "quantity": 1,
-    "unit_price": 2
+    "unit_price": 3
 }
 
 ### Delete from cart

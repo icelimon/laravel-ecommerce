@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Http\Traits\ResponseTrait;
-use App\Models\Cart;
 use App\Services\CartService;
 
 class CartController extends Controller
