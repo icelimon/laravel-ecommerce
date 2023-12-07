@@ -1,6 +1,6 @@
 @URL = http://localhost:81/api
 
-### Login
+##################### Login ################################
 # @name login
 POST {{URL}}/login
 Content-Type: application/json
@@ -13,10 +13,34 @@ Content-Type: application/json
 ### 
 @authToken = {{login.response.body.authorization.token}}
 
-### Get all role
+##################### Get all role ################################
 
 GET {{URL}}/role
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
-###
+##################### Add a new role ################################
+POST {{URL}}/role
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "manager"
+}
+
+##################### Edit role ################################
+PUT {{URL}}/role/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "manager"
+}
+
+
+##################### Delete role ################################
+DELETE {{URL}}/role/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+

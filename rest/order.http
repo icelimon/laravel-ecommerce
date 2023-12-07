@@ -1,6 +1,6 @@
 @URL = http://localhost:81/api
 
-### Login
+##################### Login ################################
 # @name login
 POST {{URL}}/login
 Content-Type: application/json
@@ -13,19 +13,19 @@ Content-Type: application/json
 ### 
 @authToken = {{login.response.body.authorization.token}}
 
-### Get all
+##################### Get all order ################################
 
 GET {{URL}}/order
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
-### Get single  
+##################### Get Single ################################
 
 GET {{URL}}/order/3
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
-### Add to order
+##################### Add Order ################################
 POST {{URL}}/order
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
@@ -39,7 +39,7 @@ Authorization: Bearer {{authToken}}
     }]
 }
 
-### Update to order
+##################### Update order ################################
 
 PUT {{URL}}/order/3
 Content-Type: application/json
@@ -61,11 +61,7 @@ Authorization: Bearer {{authToken}}
     ]
 }
 
-### Delete from order
+##################### Delete Order ################################
 DELETE {{URL}}/order
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
-
-# curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-4ALOP0ILYEL41MASCHO1ASJ8BYC NEW_RELIC_ACCOUNT_ID=4271850 /usr/local/bin/newrelic install
-
-# 587d3dcb64e363405682ee0c42aebe02FFFFNRAL

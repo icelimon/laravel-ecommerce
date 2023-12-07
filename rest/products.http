@@ -1,7 +1,7 @@
 @URL = http://localhost:81/api
 ###
 
-### Login
+##################### Login ################################
 # @name login
 POST {{URL}}/login
 Content-Type: application/json
@@ -15,18 +15,18 @@ Content-Type: application/json
 @authToken = {{login.response.body.authorization.token}}
 
 
-### Get all products
+##################### Get All ################################
 GET {{URL}}/product
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 
-### Get single product
+##################### Get ################################
 GET {{URL}}/product/1
 Content-Type: application/json
 
 
-### Create new product
+##################### Add ################################
 POST {{URL}}/product
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
@@ -39,8 +39,8 @@ Authorization: Bearer {{authToken}}
 }
 
 
-### Update a product
-PATCH {{URL}}/2
+##################### Update ################################
+PATCH {{URL}}/product/2
 Content-Type: application/json
 
 {
@@ -51,8 +51,6 @@ Content-Type: application/json
 }
 
 
-### Delete a product
-DELETE {{URL}}/2
+##################### Delete ################################
+DELETE {{URL}}/product/2
 Content-Type: application/json
-
-

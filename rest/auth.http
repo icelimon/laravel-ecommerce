@@ -1,6 +1,7 @@
 @URL = http://localhost:81/api
 
-### Login
+##################### Login ################################
+# @name login
 POST {{URL}}/login
 Content-Type: application/json
 
@@ -8,5 +9,11 @@ Content-Type: application/json
     "email": "customer@example.com",
     "password": "123456"
 }
-
 ### 
+@authToken = {{login.response.body.authorization.token}}
+
+##################### Logout ################################
+POST {{URL}}/logout
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+

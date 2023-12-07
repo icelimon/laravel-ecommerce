@@ -1,13 +1,21 @@
 @URL = http://localhost:81/api
 ###
 
-###GET All users
-GET {{URL}}/user
+
+##################### Login ################################
+# @name login
+POST {{URL}}/login
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgxL2FwaS9sb2dpbiIsImlhdCI6MTcwMTc2OTE5NSwiZXhwIjoxNzAxNzcyNzk1LCJuYmYiOjE3MDE3NjkxOTUsImp0aSI6ImJKc0VuRmF5ekVaWWJlYmUiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.a1FzpJ0rfrpT377JdWMKlh0kbaGOJBcll3zFJT7W3gk
 
+{
+    "email": "admin@example.com",
+    "password": "123456"
+}
 
-### Create User
+### 
+@authToken = {{login.response.body.authorization.token}}
+
+##################### Create User ################################
 POST {{URL}}/register
 Content-Type: application/json
 
@@ -18,4 +26,24 @@ Content-Type: application/json
     "role_id": "1"
 }
 
-###
+##################### GET All users ################################
+GET {{URL}}/user
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+
+##################### Edit User ################################
+PUT {{URL}}/user/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "admin",
+    "email": "admin@example.com",
+    "password": "123456"
+}
+
+##################### Delete User ################################
+DELETE {{URL}}/user/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
